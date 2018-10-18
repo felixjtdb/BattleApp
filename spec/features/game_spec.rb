@@ -10,11 +10,11 @@ describe Game do
   end
   it "player 1 is has the first turn" do
     expect(game.turn).to eq player1
-    expect(game.not_turn).to eq player2
+    expect(game.not_active).to eq player2
   end
   it "player 1 is has the first turn" do
     game.switch_turn
     expect(game.turn).to eq player2
-    expect(game.not_turn).to eq player1
+    expect(game.not_active).to eq player1
   end
 end

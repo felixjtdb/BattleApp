@@ -23,9 +23,9 @@ class Battle < Sinatra::Base
   end
 
   get '/attack' do
-    $game.attack($game.not_turn)
-    $game.switch_turn
     @game = $game
+    @game.attack(@game.not_active)
+    @game.switch_turn
     erb(:attack)
   end
 end
