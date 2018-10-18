@@ -1,13 +1,21 @@
-feature 'Testing infrastructure' do
-  scenario 'Can run app and check page content' do
-    visit '/'
-    expect(page).to have_content 'Testing infrastructure working!'
-  end
+require_relative 'web_helpers'
+feature 'Battle' do
   scenario 'two player names can be entered' do
-    visit '/names'
-    fill_in('player1', with: 'John')
-    fill_in('player2', with: 'Tim')
-    click_button 'Submit'
-    expect(page).to have_content "John Tim"
+    sign_in_and_play("John", "Tim")
+    expect(page).to have_content "John 60 Tim 60"
+  end
+  scenario 'shows when someone attacks' do
+    sign_in_and_play("John", "Tim")
+    click_button 'Attack'
+    expect(page).to have_content "John attacks Tim"
+  end
+  scenario 'shows its player1s turn at start' do
+    sign_in_and_play("Your Mum", "Your Dad")
+    expect(page).to have_content "Your Mum's turn"
+  end
+  scenario 'player2s turn after first attack' do
+    sign_in_and_play("Your Mum", "Your Dad")
+    click_button 'Attack'
+    expect(page).to have_content "Your Dad's turn"
   end
 end

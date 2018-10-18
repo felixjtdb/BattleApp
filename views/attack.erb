@@ -1,0 +1,9 @@
+<%=@game.player1.name%> <%=@game.player1.hp%> <%=@game.player2.name%> <%=@game.player2.hp%>
+<br>
+<%=@game.not_turn.name%> attacks <%=@game.turn.name%>
+<br>
+<%=@game.turn.name%>'s turn
+
+<form action="/attack">
+  <input type="submit" value="Attack">
+</form>
