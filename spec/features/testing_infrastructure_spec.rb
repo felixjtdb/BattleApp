@@ -18,4 +18,10 @@ feature 'Battle' do
     click_button 'Attack'
     expect(page).to have_content "Your Dad's turn"
   end
+  scenario 'game over if health = 0' do
+    sign_in_and_play("bill", "bob")
+    allow(Kernel).to receive(:rand) {10}
+    11.times { click_button 'Attack' }
+    expect(page).to have_content "GAME OVER!"
+  end
 end

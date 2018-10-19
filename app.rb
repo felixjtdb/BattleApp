@@ -6,6 +6,10 @@ require './lib/game'
 class Battle < Sinatra::Base
   enable :sessions
 
+  before do
+    @game = Game.instance
+  end
+
   get '/' do
     erb(:names_form)
   end
@@ -13,19 +17,22 @@ class Battle < Sinatra::Base
   post '/names_form' do
     player_1 = Player.new(params[:player1])
     player_2 = Player.new(params[:player2])
-    $game = Game.new(player_1, player_2)
+    @game = Game.create(player_1, player_2)
     redirect '/play'
   end
 
   get '/play' do
-    @game = $game
     erb(:play)
   end
 
   get '/attack' do
-    @game = $game
     @game.attack(@game.not_active)
+    redirect 'game_over' if @game.game_over?
     @game.switch_turn
     erb(:attack)
+  end
+
+  get '/game_over' do
+    erb(:game_over)
   end
 end

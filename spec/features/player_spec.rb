@@ -10,6 +10,7 @@ describe Player do
     expect(jeff.hp).to eq Player::DEFAULT_HP
   end
   it 'hp reduced by 10 when attacked' do
+    allow(Kernel).to receive(:rand) {10}
     expect{jeff.attacked}.to change{jeff.hp}.by(-10)
   end
 end

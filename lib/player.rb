@@ -7,7 +7,6 @@ class Player
   end
 
   def attacked
-    @hp -= 10
+    @hp -= Kernel.rand(10)
   end
-
 end
