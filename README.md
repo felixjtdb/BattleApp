@@ -5,7 +5,7 @@ Play the game by running $rackup config.ru, then connecting to your local host o
 
 I approached this challenge by writing tests that allign with the user stroies presented in the challenge outline, they were:
 As two Players,
-
+'''
 So we can play a personalised game of Battle,
 We want to Start a fight by entering our Names and seeing them
 
@@ -40,3 +40,4 @@ I want Player 2's attack to reduce my HP by 10.
 As a Player,
 So I can Lose a game of Battle,
 I want to see a 'Lose' message if I reach 0HP first.
+''''
